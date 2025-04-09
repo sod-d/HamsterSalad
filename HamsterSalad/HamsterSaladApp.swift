@@ -11,7 +11,7 @@ import SwiftUI
 struct HamsterSaladApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView() //앱의 첫번째 화면
         }
     }
 }
