@@ -141,13 +141,13 @@ struct accountsListView: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 VStack(alignment: .leading){
-                    Text("입출금계좌")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                Text("999,999,999원")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                        Text("입출금계좌")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text("999,999,999원")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
                 }
                 Spacer()
                 Button(action: {
@@ -163,7 +163,43 @@ struct accountsListView: View {
                         .cornerRadius(8)
                 }
 
-            }            
+            }
+            ForEach(0..<3, id: \.self){ index in
+                HStack {
+                    AsyncImage(url: URL(string: "https://picsum.photos/50/50​")) { phase in
+                    switch phase {
+                    case .empty:
+                        //로딩중
+                        ProgressView()
+                            .frame(width: 50, height:50)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height:50)
+                            .clipShape(Circle())
+                    case .failure: //실패 시
+                        Image(systemName: "dollarsign.bank.building.fill")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height:50)
+                            .foregroundColor(.gray)
+                    @unknown default:
+                        EmptyView();
+                    }
+
+                    }
+                    VStack(alignment: .leading){
+                        Text("8,300,000원")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                        Text("IBK중기근로자어쩌구")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                    }
+                    
+                }
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
